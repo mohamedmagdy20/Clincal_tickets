@@ -1,0 +1,138 @@
+{% extends 'base.html' %} {% block content %}
+
+{% if messages %}
+{% for message in messages %}
+<div class="m-auto w-50" id="success_alert">
+    <h4 class="alert box-color text-white text-center">{{ message }}</h4>
+</div>
+{% endfor %}
+{% endif %}
+<section class="table mt-2 w-75 m-auto position" id="patient-table">
+    <div class="container">
+        <div class="row">
+            <div class="add">
+                <button type="button" class="btn btnsuccess text-white" data-toggle="modal"
+                    data-target="#addpatientCenter">
+                    Add Patient
+                </button>
+            </div>
+            <div class="main">
+                <form action="{% url 'searchpatient' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="search" id="search" placeholder="Search">
+
+                        <div class="input-group-append">
+                            <button class="btn btn-secondary" type="submit">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                </form>
+            </div>
+
+        </div>
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>National ID</th>
+                    <th>Date Of Birth</th>
+                    <th>City</th>
+                    <th>Phone</th>
+                    <th>Reserved</th>
+                    <th>Created at</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pat in patients %}
+                <tr>
+                    <td>{{pat.Name}}</td>
+                    <td>{{pat.National_num}}</td>
+                    <td>{{pat.BirthDay}}</td>
+                    <td>{{pat.City}}</td>
+                    <td>{{pat.Phone}}</td>
+                    <td>{{pat.reserved}}</td>
+                    <td>{{pat.created_at}}</td>
+                    <td>
+                        <button class="btn btnsuccess" data-toggle="modal" data-target="#updatepatientCenter">
+                            <i class="fa fa-pen text-white"></i>
+                        </button>
+                        <a href="{% url 'deletepatient' pat.id %}" class="btn btn-danger">
+                            <i class="fa fa-trash text-white"></i>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+                <!-- and so on... -->
+            </tbody>
+        </table>
+    </div>
+    </div>
+</section>
+
+<div class="modal fade" id="addpatientCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Add Patient</h5>
+                <div class="add">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+            <div class="modal-body bg-light">
+                <form action="{% url 'Dashboard/patient' %}" method="post">
+                    {% csrf_token %}
+                    {{form.as_p}}
+
+
+            </div>
+            <div class="modal-footer">
+                <a href="" class="btn btn-secondary" data-dismiss="modal">Close</a>
+                <button type="submit" class="btn btnsuccess text-white">Save changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="updatepatientCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Edit
+                    Patient</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body bg-light">
+                <form action="">
+                    <label for="">Name</label>
+                    <input type="text" class="form-control">
+                    <label for="">National ID</label>
+                    <input type="text" class="form-control">
+
+                    <label for="">DOB</label>
+                    <input type="date" class="form-control">
+
+
+                    <label for="">Address</label>
+                    <input type="text" class="form-control">
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btnsuccess text-white">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

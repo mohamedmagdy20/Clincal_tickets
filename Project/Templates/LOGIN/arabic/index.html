@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Card</title>
+  <link rel="stylesheet" href="{% static 'Login/style.css' %}">
+  <link rel="stylesheet" href="{% static 'Login/bootstrap.css' %}">
+</head>
+
+<body style="direction: rtl;">
+  <div class="navbar navbar-expand-lg ">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="container collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="main">
+        <i class="fa-solid fa-house-chimney-medical"></i>
+        <a class="navbar-brand" href="{% url 'arabic' %}">فيزيتا</a>
+      </div>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'arabic' %}">الصفحه الرئيسيه</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#services">الخدمات</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#feed">ردود الفعل</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#about">من نحن</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#contact">اتصل بنا</a>
+        </li>
+      </ul>
+    </div>
+    <!-- </div> -->
+  </div>
+  <div class="page">
+    <div class="Card">
+      <form action="" method="post">
+        <h2 style="margin-bottom:30px">تسجيل الدخول</h2>
+        <input type="text" name="اسم المستحدم" placeholder="اسم المستحدم" class="form-control mb-4">
+        <input type="password" name="كلمة السر" placeholder="كلمة السر" class="form-control mb-4">
+        <input type="submit" value="تسجيل الدخول" class="btn btn-primary">
+        <a href="index2.html" style="margin-top:10px">هل نسيت كلمة المرور / التسجيل</a>
+
+      </form>
+    </div>
+  </div>
+  <script src="bootstrap.js"></script>
+</body>
+
+</html>

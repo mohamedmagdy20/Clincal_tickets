@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>SignUp</title>
+    <link rel="stylesheet" href="{% static 'Login/style.css' %}">
+    <link rel="stylesheet" href="{% static 'Login/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'Login/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'Login/fontawesome.min.css' %}">
+</head>
+
+<body>
+    <div class="navbar navbar-expand-lg ">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="container collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="main">
+                <a class="navbar-brand" href="{% url 'Home' %}">Vezeeta</a>
+            </div>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="home.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#services">Services</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#feed">FeedBack</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#contact">Contact</a>
+                </li>
+            </ul>
+        </div>
+        <!-- </div> -->
+    </div>
+    <div class="page">
+        <div class="Card">
+            <form action="index2.html" method="POST">
+                <h2 style="margin-bottom:30px">Sign Up</h2>
+                <!-- {% csrf_token %}
+                {{form.as_p }} -->
+                <div class="input-group mb-4">
+                    <span class="input-group-text" id="basic-addon1">E-mail</span>
+                    <input type="text" class="form-control" placeholder="E-mail" aria-label="Username"
+                        aria-describedby="basic-addon1">
+                </div>
+                <div class="input-group mb-4">
+                    <span class="input-group-text" id="basic-addon1">National ID</span>
+                    <input type="text" class="form-control" placeholder="Enter National ID" aria-label="Username"
+                        aria-describedby="basic-addon1">
+                </div>
+                <div class="input-group mb-4">
+                    <span class="input-group-text" id="basic-addon1">Bithday</span>
+                    <input type="date" class="form-control" placeholder="Bithday" aria-label="Username"
+                        aria-describedby="basic-addon1">
+                </div>
+                <div class="input-group mb-4">
+                    <input type="file" class="form-control" placeholder="Upload Iamges" aria-label="Username"
+                        aria-describedby="basic-addon1">
+                </div>
+                <div class="input-group mb-4">
+                    <span class="input-group-text" id="basic-addon1">Password</span>
+                    <input type="Password" class="form-control" placeholder="Password" aria-label="Username"
+                        aria-describedby="basic-addon1">
+                </div>
+                <div class="input-group mb-4">
+                    <span class="input-group-text" id="basic-addon1">Confirm Password</span>
+                    <input type="password" class="form-control" placeholder="Confirm Password" aria-label="Username"
+                        aria-describedby="basic-addon1">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" style="cursor:pointer" value=""
+                        id="flexCheckIndeterminate">
+                    <label class="form-check-label" style="margin:0;padding:0 ; float: left;"
+                        for="flexCheckIndeterminate">
+                        Remember Me
+                    </label>
+                </div>
+                <button class="btn btn-primary" style="margin-top:20px">SingUp</button>
+            </form>
+        </div>
+    </div>
+    <script src="{% static 'Login/bootstrap.js' %}"></script>
+</body>
+
+</html>

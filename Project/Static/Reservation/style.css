@@ -1,0 +1,63 @@
+* {
+    padding: 0;
+    margin: 0;
+
+}
+
+body {
+
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: #0D6EFD;
+
+}
+
+form {
+
+    background: #fff;
+    padding: 25px 30px;
+    border-radius: 30px;
+    box-shadow: 1.2px 1.2px 15px #66a1f9;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.contanair::before {
+    content: "";
+    position: fixed;
+    width: 300%;
+    height: 100%;
+    background-color: #0075FF;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) skew(0, -10deg);
+    border-radius: 50%;
+    z-index: -1;
+    animation: waving 10s ease-in-out infinite alternate;
+}
+
+@keyframes waving {
+    from {
+        transform: translateX(-50%) skew(0, -10deg);
+
+    }
+
+    to {
+        transform: translateX(-60%) skew(30deg, 0deg);
+
+    }
+}
+
+
+
+.navbar {
+    /* background-color: rgb(100, 100, 100); */
+    width: 100%;
+    display: block;
+    transition: top 0.5s;
+    /* overflow: hidden; */
+    border-bottom: 1.5px solid #DDD;
+}

@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.banner {
+    min-height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url("https://i.pinimg.com/564x/80/3d/2d/803d2d4ca8caf501a1ff2667a959b14e.jpg") center/ cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    padding-bottom: 20px;
+
+}
+
+.card-container {
+    display: grid;
+    grid-template-columns: 420px 420px;
+}
+
+.con-img {
+    width: 100%;
+    background-color: #fff;
+    height: 300px;
+
+
+}
+
+.banner h2 {
+    padding-bottom: 40px;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.card-content {
+    background: #fff;
+    height: 300px;
+}
+
+.card-content h3 {
+    text-align: center;
+    padding-bottom: 20px;
+    color: #000;
+    padding: 25px 0 10px 0;
+    font-size: 26px;
+    font-weight: 500;
+}
+
+.table-row {
+    display: grid;
+    width: 90%;
+    margin: 0 auto;
+}
+
+table td,
+table button {
+    display: flexbox;
+    width: 60%;
+    margin: 15px 12px;
+    padding: 5px;
+    font-size: 15px;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+
+    border-bottom: 1px solid #eee;
+    font-weight: 300;
+
+
+}
+
+.btn {
+    color: #fff;
+    background: #f2745f;
+    border-radius: 4px;
+    margin: 1.5rem auto 0 auto;
+    padding: 12px 20px;
+    border: none;
+    font-size: 1rem;
+    font-weight: 500;
+
+}
+
+.btn:hover {
+    opacity: 0.9;
+}

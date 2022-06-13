@@ -1,0 +1,138 @@
+{% extends 'base.html' %} {% block content %}
+
+{% if messages %}
+{% for message in messages %}
+<div class="m-auto w-50" id="success_alert">
+  <h4 class="alert box-color text-white text-center">{{ message }}</h4>
+</div>
+{% endfor %}
+{% endif %}
+<section class="table mt-2 position" id="dep-table">
+  <div class="container">
+    <div class="row">
+      <div class="add">
+        <button type="button" class="btn btnsuccess text-white" data-toggle="modal" data-target="#adddepCenter">
+          Add Clincal
+        </button>
+      </div>
+      <div class="main">
+        <form action="{% url 'search_dep' %}" method="POST">
+          {% csrf_token %}
+          <div class="input-group">
+            <input type="text" class="form-control" name="search" id="search" placeholder="Search">
+            <div class="input-group-append">
+              <button class="btn btnsuccess" type="submit">
+                <i class="fa fa-search"></i>
+              </button>
+            </div>
+        </form>
+      </div>
+    </div>
+    <table class="styled-table text-center">
+      <thead>
+        <tr class="text-center">
+          <th>Name</th>
+          <th>IMG</th>
+          <th>Desc</th>
+          <th>Start Day</th>
+          <th>End Day</th>
+          <th>Rate</th>
+          <th>Price</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        {% for dep in deps %}
+        <tr>
+          <td>{{dep.name}}</td>
+          <td><img width="100px" src="{{dep.img.url}}" alt=""></td>
+          <td>{{dep.desc}}</td>
+          <td>{{dep.Days}}</td>
+          <td>{{dep.Days2}}</td>
+          <td>{{dep.rate}}</td>
+          <td>{{dep.price}}</td>
+          <td>
+            <a href="{% url 'edit_department' dep.id %}" class="btn btnsuccess">
+              <i class="fa fa-pen text-white"></i>
+            </a>
+            <a href="{% url 'deletedepartment' dep.id %}" class="btn btn-danger">
+              <i class="fa fa-trash text-white"></i>
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+
+      </tbody>
+    </table>
+  </div>
+  </div>
+</section>
+
+
+
+<!-- ADD Clincal -->
+<div class="modal fade" id="adddepCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Add Clincal</h5>
+        <div class="add">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </div>
+      <div class="modal-body bg-light">
+        <form action="{% url 'Dashboard/departments' %}" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{form.as_p}}
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-secondary text-white" data-dismiss="modal">Close</a>
+        <button type="submit" class="btn btnsuccess text-white">Save changes</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Clinc -->
+<div class="modal fade" id="updatedepCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Edit
+          Clinics</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body bg-light">
+        <form action="">
+          <label for="">Name</label>
+          <input type="text" value="{{data.name}}" class="form-control">
+          <label for="">Doctors</label>
+          <select name="" class="form-control" id="">
+            <option value="">Doc1</option>
+            <option value="">Doc2</option>
+            <option value="">Doc3</option>
+            <option value="">Doc4</option>
+            <option value="">Doc5</option>
+          </select>
+          <label for="">Descrption</label>
+          <textarea name="" id="" class="form-control" cols="30" rows="10"></textarea>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btnsuccess text-white">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

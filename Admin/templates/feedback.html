@@ -1,0 +1,17 @@
+{% extends 'base.html' %} {% block content %}
+<section class="ms-3">
+  <div class="container p-3">
+    {% for fed in feeds %}
+    <div class="card mt-3">
+      <div class="card-header btnsuccess text-white fs-5">
+        {{fed.created_at}}
+      </div>
+      <div class="card-body">
+        <p class="card-text fs-5">{{fed.FeedBack}}</p>
+      </div>
+    </div>
+
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

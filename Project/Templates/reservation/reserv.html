@@ -1,0 +1,110 @@
+{% load static %} {% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'Reservation/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'Home/Style/bootstrap.css' %}" />
+  </head>
+
+  <body>
+    <div class="navbar navbar-expand-lg">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div
+        class="container collapse navbar-collapse"
+        id="navbarSupportedContent"
+      >
+        <div class="main">
+          <i class="fa-solid fa-house-chimney-medical"></i>
+          <a class="navbar-brand" href="{% url 'Home' %}">Vezeeta</a>
+        </div>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="home.html"
+              >Home</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#services">Services</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#feed">FeedBack</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#contact">Contact</a>
+          </li>
+        </ul>
+      </div>
+      <!-- </div> -->
+    </div>
+    <div class="contanair">
+      <form action=" {% url 'ticket' data %}" method="POST">
+        <h2
+          style="
+            font-weight: 600;
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 20px;
+          "
+        >
+          Patient Reservation
+        </h2>
+
+        {% csrf_token %}
+        <div class="row">
+          <div class="col-md-12 my-3">{{form.Name | as_crispy_field }}</div>
+          <div class="col-md-6 my-3">
+            {{form.National_num | as_crispy_field }}
+          </div>
+          <div class="col-md-6 my-3">{{form.BirthDay | as_crispy_field }}</div>
+          <div class="col-md-4 my-3">{{form.Phone | as_crispy_field }}</div>
+          <div class="col-md-8 my-3">{{form.City | as_crispy_field }}</div>
+          <div class="col-md-6 my-3">
+            <label for="">Start Time</label>
+            <input name="start" id="start" type="date" class="form-control" />
+          </div>
+          <div class="col-md-6 my-3">
+            <label for="">End Time</label>
+            <input name="end" id="end" type="text" class="form-control" />
+          </div>
+        </div>
+        <!-- {{form | crispy }} -->
+
+        <div class="bottom" style="text-align: center">
+          <button type="submit" class="btn btn-outline-primary w-25 my-3">
+            Book
+          </button>
+        </div>
+      </form>
+    </div>
+  </body>
+  <script>
+    starttime = document.getElementById("start").val;
+    endtime = document.getElementById("end").val;
+    function addDays(date, days) {
+      var result = new Date(date);
+      result.setDate(result.getDate() + days);
+      return result;
+    }
+    deadline = addDays(starttime, 2);
+    // console.log(deadline);
+    // endtime.value = deadline;
+  </script>
+</html>

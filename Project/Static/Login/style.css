@@ -1,0 +1,88 @@
+:root {
+  --main-color: #0075FF;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0px;
+  font-family: sans-serif;
+  max-height: 70vh;
+}
+
+
+.page {
+  height: 100vh;
+}
+
+.page::before {
+  content: "";
+  position: fixed;
+  width: 300%;
+  height: 100%;
+  background-color: #0075FF;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) skew(0, -10deg);
+  border-radius: 50%;
+  z-index: -1;
+  animation: waving 10s ease-in-out infinite alternate;
+}
+
+@keyframes waving {
+  from {
+    transform: translateX(-50%) skew(0, -10deg);
+
+  }
+
+  to {
+    transform: translateX(-60%) skew(30deg, 0deg);
+
+  }
+}
+
+.Card {
+  padding: 10px;
+  position: absolute;
+  height: 40%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+form {
+  width: 500px;
+  background-color: #0075FF;
+  padding: 80px 40px 20px 40px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #DDD;
+  text-align: center;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* form input {
+  display: block;
+  margin: 20px 0px;
+} */
+
+form a {
+  display: block;
+
+}
+
+
+.navbar {
+  /* background-color: rgb(100, 100, 100); */
+  position: fixed;
+  width: 100%;
+  display: block;
+  transition: top 0.5s;
+  /* overflow: hidden; */
+  border-bottom: 1.5px solid #DDD;
+}

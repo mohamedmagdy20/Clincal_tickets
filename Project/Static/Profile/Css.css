@@ -1,0 +1,79 @@
+body {
+    background: #1976d2
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #BA68C8
+}
+
+.profile-button {
+    background: #1976d2;
+    box-shadow: none;
+    border: none
+}
+
+.profile-button:hover {
+    background: #1976d2
+}
+
+.profile-button:focus {
+    background: #1976d2;
+    box-shadow: none
+}
+
+.profile-button:active {
+    background: #1976d2;
+    box-shadow: none
+}
+
+.back:hover {
+    color: #1976d2;
+    cursor: pointer
+}
+
+
+
+.add-experience:hover {
+    background: #1976d2;
+    color: #fff;
+    cursor: pointer;
+    border: solid 1px #1976d2;
+}
+caption {
+    margin: 10px;
+    font-weight: bold;
+    font-size: 20px;
+}
+table {
+    width: 900px;
+    margin: 20px auto;
+    font-size: 20px;
+    border-bottom: 4px solid #009688;
+    text-align: center;
+}
+table thead td {
+    color: white;
+    font-weight: bold;
+    background-color: #424242;
+}
+table td {
+    background-color: #eee;
+    padding: 11px;
+}
+.append,
+.approve,
+.delete {
+    color: white;
+        padding: 10px;
+        cursor: pointer;
+}
+.append{
+    background-color: #03a9f4;
+}
+.approve {
+    background-color: #E91E63;
+}
+.delete{
+    background-color: aqua;
+}
