@@ -1,7 +1,7 @@
 import os
 from django.shortcuts import redirect, render
 from django.contrib import messages
-from Admin.forms import clincform, patientform, ticketform
+from Admin.forms import clincform, doctorform, patientform, ticketform
 from Admin.models import Department, Patient, Doctor, ticket,feedback
 from Project.forms import PatientForm
 
@@ -34,8 +34,14 @@ def department(request):
 
 
 def doctor(request):
-    return render(request, 'doctors.html')
-
+    docs = Doctor.objects.all()
+    form = doctorform(request.POST or None, request.FILES or None)
+    if form.is_valid():
+        form.save()
+        messages.success(request, "Succesfully added")
+        return redirect('Dashboard/doctors')
+    context = {'docs': docs, 'form': form}
+    return render(request, 'doctors.html', context)
 
 def patients(request):
     patients = Patient.objects.all()
@@ -161,3 +167,37 @@ def searchticket(request):
         return render(request, "searchticket.html", {"ticket": res,'form':form})
     else:
         return render(request, "searchticket.html", {})
+
+def deletedoctor(request, d_id):
+    item = Doctor.objects.get(id=d_id)
+    item.delete()
+    messages.success(request, "A Doctor Has Been Deleted Succesfully ")
+    return redirect('Dashboard/doctors')
+
+def searchdoctor(request):
+    
+    if request.method == 'POST':
+        form = doctorform(request.POST or None, request.FILES or None)
+        key = request.POST.get('search')
+        res = Doctor.objects.filter(name__icontains=key)
+        return render(request, "searchdoctors.html", {"docs": res,'form':form})
+    else:
+        return render(request, "searchdoctors.html", {})
+
+def editdoctor(request,id):
+    data = Doctor.objects.get(pk=id)
+    form = doctorform(instance=data)
+    context = {'data': data,'form':form}
+    return render(request, 'editdoctor.html', context)
+
+def updatedoctor(request,id):
+    data = Doctor.objects.get(pk=id)
+    if request.method == 'POST':
+        form = doctorform(request.POST,instance=data)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "A Doctor Has Been Updated Succesfully ")
+            return redirect('Dashboard/doctors')
+        else:
+            # messages.success(request, "A Patient Has Been Updated Succesfully ")
+            return redirect('editdoctor',data.id)
