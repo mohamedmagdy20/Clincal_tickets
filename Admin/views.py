@@ -190,6 +190,8 @@ def editdoctor(request,id):
     context = {'data': data,'form':form}
     return render(request, 'editdoctor.html', context)
 
+
+
 def updatedoctor(request,id):
     data = Doctor.objects.get(pk=id)
     if request.method == 'POST':

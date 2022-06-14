@@ -73,16 +73,24 @@ def reserve(request,id):
 
 
 def Ticket(request,id):
+    cd =''
     depid = Department.objects.get(pk=id);
-    
     form = PatientForm(request.POST)
     if form.is_valid():
         cd = form.cleaned_data
+    if Patient.objects.filter(National_num=cd['National_num']).exists():
+        patient = Patient.objects.get(National_num=cd['National_num'])
+        saveticket = ticket.objects.create(Pat=patient,dept=depid,startdate=request.POST.get('start'))
+        name = cd['Name']
+        return render(request, "Ticket/ticket.html", {'name': name,'depts':depid,'code':saveticket.id,'start':saveticket.startdate})
+    else:
+        # if form.is_valid():
+            # cd = form.cleaned_data
         name = cd['Name']
         form.save()
         patient = Patient.objects.filter(National_num=cd['National_num']).first()
         saveticket = ticket.objects.create(Pat=patient,dept=depid,startdate=request.POST.get('start'))
-    return render(request, "Ticket/ticket.html", {'name': name,'depts':depid,'code':saveticket.id,'start':saveticket.startdate})
+        return render(request, "Ticket/ticket.html", {'name': name,'depts':depid,'code':saveticket.id,'start':saveticket.startdate})
 
 
 def more_serv(request):
