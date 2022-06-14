@@ -1,5 +1,12 @@
 {% extends 'base.html' %} {% block content %}
 
+{% if messages %}
+{% for message in messages %}
+<div class="m-auto w-50" id="success_alert">
+  <h4 class="alert box-color text-white text-center">{{ message }}</h4>
+</div>
+{% endfor %}
+{% endif %}
 <section class="table mt-2 w-75 m-auto position" id="ticket_table" >
   <div class="container">
     <div class="row">

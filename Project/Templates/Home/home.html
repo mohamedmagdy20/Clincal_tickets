@@ -190,7 +190,6 @@
         <section>
             <div class="swiper mySwiper container">
                 <div class="swiper-wrapper content">
-
                     {% for i in clincs %}
                     <div class="swiper-slide serv-content"
                         style="background-image: url( '{{i.img.url}}'); background-repeat: no-repeat; background-size: cover;">
@@ -203,13 +202,9 @@
                             <!-- <a href="Pages/reservation/reserv.html">View</a></button> -->
                             <a href="{% url 'showclinc' i.id %}" class="btn btn-primary book">View</a>
                         </div>
-
                     </div>
-
                     {% endfor %}
-
                 </div>
-
             </div>
 
             <div class="swiper-button-next"></div>

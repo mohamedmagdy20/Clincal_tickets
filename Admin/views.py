@@ -163,7 +163,7 @@ def searchticket(request):
     if request.method == 'POST':
         form = ticketform(request.POST or None, request.FILES or None)
         key = request.POST.get('search')
-        res = ticket.objects.filter(pk=key)
+        res = ticket.objects.filter(pk__icontains=key)
         return render(request, "searchticket.html", {"ticket": res,'form':form})
     else:
         return render(request, "searchticket.html", {})

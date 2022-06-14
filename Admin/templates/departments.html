@@ -7,16 +7,19 @@
 </div>
 {% endfor %}
 {% endif %}
-<section class="table mt-2 position" id="dep-table">
+<section class="table mt-2" id="dep-table">
   <div class="container">
+    <div style="overflow-x:auto;">
+
+    <!-- <div class="ms-5"> -->
     <div class="row">
-      <div class="add">
+      <div class="add p-2">
         <button type="button" class="btn btnsuccess text-white" data-toggle="modal" data-target="#adddepCenter">
           Add Clincal
         </button>
       </div>
-      <div class="main">
-        <form action="{% url 'search_dep' %}" method="POST">
+      <div class="main p-3">
+        <form action="{% url 'search_dep' %}" class="w-100" method="POST">
           {% csrf_token %}
           <div class="input-group">
             <input type="text" class="form-control" name="search" id="search" placeholder="Search">
@@ -28,7 +31,7 @@
         </form>
       </div>
     </div>
-    <table class="styled-table text-center">
+    <table class="styled-table text-center overflow">
       <thead>
         <tr class="text-center">
           <th>Name</th>
