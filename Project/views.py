@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.shortcuts import render
 from django.shortcuts import render, redirect
 from sympy import Integer
@@ -80,7 +81,16 @@ def Ticket(request,id):
         cd = form.cleaned_data
     if Patient.objects.filter(National_num=cd['National_num']).exists():
         patient = Patient.objects.get(National_num=cd['National_num'])
-        saveticket = ticket.objects.create(Pat=patient,dept=depid,startdate=request.POST.get('start'))
+        now = datetime.now()
+        year = str(now.year)
+        month = str(now.month)
+        day1 = str((now.day) + 1)
+        day = str(now.day)
+        end = year + '-' + month + '-' + day1
+        start = year + '-' + month + '-' + day 
+        saveticket = ticket.objects.create(
+                Pat=patient, dept=depid, startdate=start, enddate=end) 
+        # saveticket = ticket.objects.create(Pat=patient,dept=depid,startdate=request.POST.get('start'))
         name = cd['Name']
         return render(request, "Ticket/ticket.html", {'name': name,'depts':depid,'code':saveticket.id,'start':saveticket.startdate})
     else:
@@ -88,8 +98,16 @@ def Ticket(request,id):
             # cd = form.cleaned_data
         name = cd['Name']
         form.save()
-        patient = Patient.objects.filter(National_num=cd['National_num']).first()
-        saveticket = ticket.objects.create(Pat=patient,dept=depid,startdate=request.POST.get('start'))
+        patient = Patient.objects.get(National_num=cd['National_num'])
+        now = datetime.now()
+        year = str(now.year)
+        month = str(now.month)
+        day1 = str((now.day) + 1)
+        day = str(now.day)
+        end = year + '-' + month + '-' + day1
+        start = year + '-' + month + '-' + day
+        saveticket = ticket.objects.create(
+                Pat=patient, dept=depid, startdate=start, enddate=end)
         return render(request, "Ticket/ticket.html", {'name': name,'depts':depid,'code':saveticket.id,'start':saveticket.startdate})
 
 
