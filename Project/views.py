@@ -1,16 +1,19 @@
 from datetime import datetime
 from django.shortcuts import render
 from django.shortcuts import render, redirect
-from sympy import Integer
 
-from Admin.models import Department, Patient,ticket
+from Admin.models import Department, Patient, ticket, Doctor
 from .forms import Feedform, PatientForm, ticketForm
 # Home Page
 
 
 def home(request):
     clincs = Department.objects.all()
-    return render(request, "Home/home.html",{'clincs':clincs})
+    Departmentcount = Department.objects.count()
+    patientscount = Patient.objects.count()
+    doctorscount = Doctor.objects.count()
+    ticketcount = ticket.objects.count()
+    return render(request, "Home/home.html", {'clincs': clincs, 'doctor': doctorscount, 'patient': patientscount, 'department': Departmentcount, 'ticket': ticketcount})
 
 
 def children(request):
@@ -65,17 +68,17 @@ def profile(request):
     return render(request, 'Profile/profile.html')
 
 
-def reserve(request,id):
+def reserve(request, id):
     form = PatientForm(request.POST or None, request.FILES or None)
     data = Department.objects.get(pk=id).id
     if form.is_valid():
         return redirect('ticket')
-    return render(request, 'reservation/reserv.html', {'form': form,'data':data})
+    return render(request, 'reservation/reserv.html', {'form': form, 'data': data})
 
 
-def Ticket(request,id):
-    cd =''
-    depid = Department.objects.get(pk=id);
+def Ticket(request, id):
+    cd = ''
+    depid = Department.objects.get(pk=id)
     form = PatientForm(request.POST)
     if form.is_valid():
         cd = form.cleaned_data
@@ -87,15 +90,15 @@ def Ticket(request,id):
         day1 = str((now.day) + 1)
         day = str(now.day)
         end = year + '-' + month + '-' + day1
-        start = year + '-' + month + '-' + day 
+        start = year + '-' + month + '-' + day
         saveticket = ticket.objects.create(
-                Pat=patient, dept=depid, startdate=start, enddate=end) 
+            Pat=patient, dept=depid, startdate=start, enddate=end)
         # saveticket = ticket.objects.create(Pat=patient,dept=depid,startdate=request.POST.get('start'))
         name = cd['Name']
-        return render(request, "Ticket/ticket.html", {'name': name,'depts':depid,'code':saveticket.id,'start':saveticket.startdate})
+        return render(request, "Ticket/ticket.html", {'name': name, 'depts': depid, 'code': saveticket.id,  'start': start, 'end': end})
     else:
         # if form.is_valid():
-            # cd = form.cleaned_data
+        # cd = form.cleaned_data
         name = cd['Name']
         form.save()
         patient = Patient.objects.get(National_num=cd['National_num'])
@@ -107,14 +110,14 @@ def Ticket(request,id):
         end = year + '-' + month + '-' + day1
         start = year + '-' + month + '-' + day
         saveticket = ticket.objects.create(
-                Pat=patient, dept=depid, startdate=start, enddate=end)
-        return render(request, "Ticket/ticket.html", {'name': name,'depts':depid,'code':saveticket.id,'start':saveticket.startdate})
+            Pat=patient, dept=depid, startdate=start, enddate=end)
+        return render(request, "Ticket/ticket.html", {'name': name, 'depts': depid, 'code': saveticket.id, 'start': start, 'end': end})
 
 
 def more_serv(request):
     clincs = Department.objects.all()
-    
-    return render(request, 'MoreServ/moreServ.html',{'clincs':clincs})
+
+    return render(request, 'MoreServ/moreServ.html', {'clincs': clincs})
 
 
 def arabic(request):
@@ -133,12 +136,11 @@ def forgetEmail(request):
     return render(request, 'forget/forget.html')
 
 
-
-
-def showclinc(request,id):
+def showclinc(request, id):
     clinc = Department.objects.get(pk=id)
     rate = clinc.rate
-    return render(request,'clinic/clinc.html',{'clinc':clinc,'range':range(0,rate)})
+    return render(request, 'clinic/clinc.html', {'clinc': clinc, 'range': range(0, rate)})
+
 
 def add_Feedback(request):
     form = Feedform()

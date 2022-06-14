@@ -57,9 +57,9 @@ class Patient(models.Model):
     Phone = models.CharField(max_length=11)
     reserved = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
+
     def __str__(self) -> str:
         return self.Name
-
 
 
 class ticket(models.Model):
@@ -70,12 +70,13 @@ class ticket(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, null=True)
 
 
-
 class feedback(models.Model):
-    Feedback = models.CharField(max_length=255,name='FeedBack')
+    Feedback = models.CharField(max_length=255, name='FeedBack')
     created_at = models.DateTimeField(auto_now_add=True, null=True)
+
     def __str__(self) -> str:
         return self.FeedBack
+
 
 class Appointment(models.Model):
     dep_Id = models.IntegerField()
