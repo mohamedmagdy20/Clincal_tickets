@@ -97,7 +97,7 @@ def updatedepartment(request,id):
     data = Department.objects.get(pk=id)
     form = clincform()
     if request.method == "POST":
-        form = clincform(request.POST,instance=data)
+        form = clincform(request.POST or None, request.FILES or None,instance=data)
         if form.is_valid():
             form.save()
             messages.success(request, 'Clical Updated Succesfuly')
