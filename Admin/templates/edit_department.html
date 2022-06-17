@@ -4,15 +4,15 @@
 <div class="container">
   <form
     class="ms-5 bg-light p-4 rounded-2"
-    action="{% url 'updatedepartment'%}"
+    action="{% url 'updatedepartment' data.id %}"
     method="post"
     enctype="multipart/form-data"
   >
     {% csrf_token %}
     <h3>Edit Clincal</h3>
-    <input type="text" name="id" value="{{data.id}}" />
-
-    <div class="form-group">
+    <!-- <input type="text" name="id" value="{{data.id}}" /> -->
+    {{form.as_p}}
+    <!-- <div class="form-group">
       <label for="exampleInputEmail1">Name</label>
       <input
         type="text"
@@ -95,7 +95,7 @@
       <small id="emailHelp" class="form-text text-muted"
         >Please Do Not Leave any Input Be Empty</small
       >
-    </div>
+    </div> -->
     <button type="submit" class="btn btnsuccess text-white">Submit</button>
   </form>
 </div>

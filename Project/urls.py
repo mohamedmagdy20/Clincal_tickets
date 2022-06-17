@@ -72,7 +72,7 @@ urlpatterns = [
     path('searchticket', searchticket, name='searchticket'),
 
     path('update/<id>', editdepartment, name='edit_department'),
-    path('updatedepartment', updatedepartment, name='updatedepartment'),
+    path('updatedepartment/<id>', updatedepartment, name='updatedepartment'),
     path('deletepatient/<p_id>', deletepatient, name="deletepatient"),
     path('searchpatient', searchpatient, name='searchpatient'),
     path('showclinc/<id>',showclinc, name='showclinc'),

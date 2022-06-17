@@ -89,36 +89,21 @@ def searchdepartment(request):
 
 def editdepartment(request, id):
     data = Department.objects.get(pk=id)
-    context = {'data': data}
+    form = clincform(instance=data)
+    context = {'data': data,'form':form}
     return render(request, 'edit_department.html', context)
 
-
-def updatedepartment(request):
+def updatedepartment(request,id):
+    data = Department.objects.get(pk=id)
+    form = clincform()
     if request.method == "POST":
-        id = request.POST.get('id')
-        name = request.POST.get('name')
-        desc = request.POST.get('desc')
-        startday = request.POST.get('startday')
-        endday = request.POST.get('endday')
-        # img =request.POST.get('img')
-        rate = request.POST.get('rate')
-        price = request.POST.get('price')
-
-        data = Department.objects.get(pk=id)
-        # if len(request.FILES) != 0:
-        #     if len(data.img) > 0:
-        #         os.remove(data.img.path)
-        data.img = request.FILES['img']
-        data.name = name
-        data.desc = desc
-        data.Days = startday
-        data.Days2 = endday
-        data.rate = rate
-        data.price = price
-        data.save()
-        messages.success(request, 'Clical Updated Succesfuly')
-        return redirect("Dashboard/departments")
-    return render(request, 'departments.html')
+        form = clincform(request.POST,instance=data)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Clical Updated Succesfuly')
+            return redirect("Dashboard/departments")
+        else:
+            return redirect('edit_department',data.id)
 
 
 def deletepatient(request, p_id):

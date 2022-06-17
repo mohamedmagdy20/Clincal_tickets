@@ -20,7 +20,7 @@
 
 <body>
   {% if user.is_authenticated %}
-  <section class="sidebar" style="width: 200px;">
+  <section class="sidebar " style="width: 200px;">
 
     <div class="sidebar-header ">
       <p class=" text-white fw-bold p-3">Admin</p>
@@ -31,16 +31,16 @@
           src="{% static 'image/png-transparent-computer-icons-management-admin-silhouette-black-and-white-neck.png' %}"
           alt="">
       </div>
-      <ul class="text-left">
-        <li><i class="fa fa-user text-white fs-4 pe-2"></i><a href="{% url 'Dashboard' %}">Dashboard</a></li>
-        <li><i class="fa fa-user text-white fs-4 pe-2"></i><a href="{% url 'Dashboard/patient' %}">Patients</a></li>
-        <li><i class="fa fa-capsules text-white fs-4 pe-2"></i><a href="{% url 'Dashboard/doctors' %}">Doctors</a> </li>
-        <li><i class="fa fa-building text-white fs-4 pe-2"></i><a href="{% url 'Dashboard/departments' %}"
+      <ul class="d-block ">
+        <li class="btn"><i class="fa fa-user text-white fs-4 pe-2"></i><a class="activecolor" href="{% url 'Dashboard' %}">Dashboard</a></li>
+        <li class="btn"><i class="fa fa-user text-white fs-4 pe-2"></i><a class="" href="{% url 'Dashboard/patient' %}">Patients</a></li>
+        <li class="btn"><i class="fa fa-capsules text-white fs-4 pe-2"></i><a class="" href="{% url 'Dashboard/doctors' %}">Doctors</a> </li>
+        <li class="btn"><i class="fa fa-building text-white fs-4 pe-2"></i><a class="" href="{% url 'Dashboard/departments' %}"
             id="dep-click">Department</a></li>
-        <li><i class="fa fa-ticket text-white fs-4 pe-2"></i><a href="{% url 'Dashboard/ticket' %}" id="ticket-click">Tickets</a></li>
-        <li><i class="fa fa-comment text-white fs-4 pe-2"></i><a href="{% url 'Dashboard/feedback' %}" id="admin-click">FeedBacks</a></li>
+        <li class="btn"><i class="fa fa-ticket text-white fs-4 pe-2"></i><a class="" href="{% url 'Dashboard/ticket' %}" id="ticket-click">Tickets</a></li>
+        <li class="btn"><i class="fa fa-comment text-white fs-4 pe-2"></i><a class="" href="{% url 'Dashboard/feedback' %}" id="admin-click">FeedBacks</a></li>
 
-        <li><i class="fa fa-right-from-bracket"></i><a href="{% url 'logout' %}" class="text-danger">Log Out</a></li>
+        <li class="btn"><i class="fa fa-right-from-bracket"></i><a href="{% url 'logout' %}" class="text-danger">Log Out</a></li>
       </ul>
     </div>
     </div>
@@ -79,6 +79,16 @@
     $("#success_alert").fadeOut("fast");
   }, 1333);
 
+  let alllis = document.querySelectorAll('ul li a');
+  console.log(alllis);
+  alllis.forEach((elem) => {
+    elem.addEventListener('click', () => {
+        alllis.forEach((e) => {
+            e.classList.remove('activecolor');
+        })
+        elem.classList.add('activecolor');
+    })
+})
 </script>
 
 </html>

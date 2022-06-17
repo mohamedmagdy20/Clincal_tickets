@@ -7,15 +7,14 @@ body {
   position: relative;
   /* overflow: hidden; */
 }
+
 .box-color {
   background-color: #009688;
 }
 .burbel {
   background-color: #ad1457 !important;
 }
-.container {
-  width: 85% !important;
-}
+
 /* .main-content .content {
   background-color: rgba(62, 31, 206, 0.87);
 } */
@@ -129,8 +128,8 @@ body {
 }
 .position {
   position: relative;
+  left: 80px;
 }
-/* .addicon {
-  position: absolute;
-  font-size: 20px;
-} */
+.activecolor {
+  color: #009688 !important;
+}
