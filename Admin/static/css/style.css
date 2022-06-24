@@ -126,6 +126,9 @@ body {
 .btnsuccess {
   background-color: #009688 !important;
 }
+.color-success {
+  color: #009688 !important;
+}
 .position {
   position: relative;
   left: 80px;

@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'Ticket/main.css' %}" />
+  </head>
+
+  <body>
+    <section class="banner">
+      <h2>Confirm Your Reservation</h2>
+      <div class="card-container">
+        <div class="card-img">
+          <img src="{% static 'Ticket/2.jpg' %}" class="con-img" />
+        </div>
+        <div class="card-content">
+          <h3>{{ticket.dept}} Ticket</h3>
+          <table>
+            <div class="table-row">
+              <tr>
+                <td>
+                  <h4>Patient Name:</h4>
+                  {{ticket.Pat}}
+                </td>
+                <td>
+                  <h4>Examination Day:</h4>
+                  {{ticket.startdate}}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <h4>Examination time:</h4>
+                  10:00 AM
+                </td>
+                <td>
+                  <h4>End Date:</h4>
+                  {{ticket.enddate}}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <h4>Your Code : <span class="try">{{ticket.id}}</span></h4>
+                </td>
+                <td>
+                  <button onclick="window.print()" class="btn">Print</button>
+                </td>
+              </tr>
+            </div>
+          </table>
+        </div>
+      </div>
+    </section>
+    <script src="{% static 'Ticket/function.js' %}"></script>
+  </body>
+</html>

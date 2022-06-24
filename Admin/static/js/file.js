@@ -39,16 +39,16 @@ google.charts.setOnLoadCallback(drawChart);
 
 function drawChart() {
   var data = google.visualization.arrayToDataTable([
-    ["Contry", "Mhl"],
-    ["Italy", 54.8],
-    ["France", 48.6],
-    ["Spain", 44.4],
-    ["USA", 23.9],
-    ["Argentina", 14.5],
+    ["Department 1", "10.6"],
+    ["Department 2", 16.6],
+    ["Department 3", 16.6],
+    ["Department 4", 16.6],
+    ["Department 5", 16.6],
+    ["Department 6", 16.6],
   ]);
 
   var options = {
-    title: "World Wide Wine Production",
+    title: "Departments Productions",
   };
 
   var chart = new google.visualization.PieChart(

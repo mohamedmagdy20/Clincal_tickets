@@ -7,14 +7,15 @@
 {% endfor %}
 {% endif %}
 <section class="table mt-2 w-75 m-auto position" id="patient-table">
+  <div  style="overflow-x:auto; padding: 10px;">
   <div class="container">
     <div class="row">
-      <div class="add">
+      <div class="add mb-3">
         <button type="button" class="btn btnsuccess text-white" data-toggle="modal" data-target="#addpatientCenter">
           Add Doctors
         </button>
       </div>
-      <div class="main">
+      <div class="main mb-3">
         <form action="{% url 'searchdoctor' %}" method="POST">
           {% csrf_token %}
           <div class="input-group">
@@ -63,6 +64,7 @@
       </tbody>
     </table>
   </div>
+</div>
   </div>
 </section>
 

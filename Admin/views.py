@@ -148,7 +148,7 @@ def searchticket(request):
     if request.method == 'POST':
         form = ticketform(request.POST or None, request.FILES or None)
         key = request.POST.get('search')
-        res = ticket.objects.filter(pk__icontains=key)
+        res = ticket.objects.filter(Pat__Name__contains = key)
         return render(request, "searchticket.html", {"ticket": res,'form':form})
     else:
         return render(request, "searchticket.html", {})
@@ -188,3 +188,7 @@ def updatedoctor(request,id):
         else:
             # messages.success(request, "A Patient Has Been Updated Succesfully ")
             return redirect('editdoctor',data.id)
+
+def viewticket(request,id):
+    data = ticket.objects.get(pk=id)
+    return render(request,'view_ticket.html',{'ticket':data})

@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from Admin.models import feedback
 
-from Admin.views import Dashboard, Feedback, Ticket, deletedepartment, deletedoctor, deletepatient, department, doctor, editdepartment, editdoctor, editpatient, patients, searchdepartment, searchdoctor, searchpatient, searchticket, updatedepartment, updatedoctor, updatepatient
+from Admin.views import Dashboard, Feedback, Ticket, deletedepartment, deletedoctor, deletepatient, department, doctor, editdepartment, editdoctor, editpatient, patients, searchdepartment, searchdoctor, searchpatient, searchticket, updatedepartment, updatedoctor, updatepatient, viewticket
 
 from . import views
 from Project.views import add_Feedback, children, digestion, ear, eyes, gyn, heart, internal, kidney, oncology, radiology, showclinc, teeth, urology, reserve, forgetEmail
@@ -83,6 +83,8 @@ urlpatterns = [
     path('searchdoctor', searchdoctor, name='searchdoctor'),
     path('editdoctor/<id>',editdoctor,name="editdoctor"),
     path('updatedoctor/<id>',updatedoctor,name="updatedoctor"),
+
+    path('view-ticket/<id>',viewticket,name='view-ticket')
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,

@@ -19,7 +19,7 @@
         <form action="{% url 'searchticket' %}" method="POST">
           {% csrf_token %}
           <div class="input-group">
-            <input type="text" class="form-control" name="search" id="search" placeholder="Search By Code">
+            <input type="text" class="form-control" name="search" id="search" placeholder="Search By Patient Name">
 
             <div class="input-group-append">
               <button class="btn btn-secondary" type="submit">
@@ -39,7 +39,7 @@
           <th>Price</th>
           <th>Date Start</th>
           <th>Date Expired</th>
-          <!-- <th>Actions</th> -->
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -51,6 +51,8 @@
           <td>{{tic.dept.price}}</td>
           <td>{{tic.startdate}}</td>
           <td>{{tic.enddate}}</td>
+          <td ><a style="color:#009688 ;" href="{% url 'view-ticket' tic.id %}"><i class="fa fa-eye fs-5"></i></a></td>
+        
         </tr>
         {% endfor %}       
       </tbody>
