@@ -13,11 +13,12 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from unicodedata import name
 from django.contrib import admin
 from django.urls import path
 from Admin.models import feedback
 
-from Admin.views import Dashboard, Feedback, Ticket, deletedepartment, deletedoctor, deletepatient, department, doctor, editdepartment, editdoctor, editpatient, patients, searchdepartment, searchdoctor, searchpatient, searchticket, updatedepartment, updatedoctor, updatepatient, viewticket
+from Admin.views import Dashboard, Feedback, Ticket, deletedepartment, deletedoctor, deletepatient, department, doctor, editdepartment, editdoctor, editpatient, patients, searchdepartment, searchdoctor, searchpatient, searchticket, sumticket, updatedepartment, updatedoctor, updatepatient, viewticket
 
 from . import views
 from Project.views import add_Feedback, children, digestion, ear, eyes, gyn, heart, internal, kidney, oncology, radiology, showclinc, teeth, urology, reserve, forgetEmail
@@ -50,7 +51,6 @@ urlpatterns = [
     path('', views.home, name='Home'),
     path('profile', views.profile),
     path('MoreServ', views.more_serv, name='more_serv'),
-    # path('SignUp', views.singup, name='signup'),
 
 
     path('Login', LoginView.as_view(
@@ -84,7 +84,9 @@ urlpatterns = [
     path('editdoctor/<id>',editdoctor,name="editdoctor"),
     path('updatedoctor/<id>',updatedoctor,name="updatedoctor"),
 
-    path('view-ticket/<id>',viewticket,name='view-ticket')
+    path('view-ticket/<id>',viewticket,name='view-ticket'),
+    path('sum_all_ticket',sumticket, name='sum_all_ticket')
+    
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,
