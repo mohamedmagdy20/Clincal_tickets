@@ -64,19 +64,19 @@
                         <h5>{{clinc.price}} L.E</h5>
                         <div>{{clinc.desc}}</div>
                         <div class="icons d-flex mt-3">
-                            <div> لفترة محدودة <i class="fa-regular fa-clock"></i> </div>
-                            <div> مشاهدات عديدة <i class="fa-solid fa-eye"></i> </div>
-                            <div> حجوزات عديدة <i class="fa-solid fa-book"></i> </div>
+                            <div> limited period <i class="fa-regular fa-clock"></i> </div>
+                            <div> many views <i class="fa-solid fa-eye"></i> </div>
+                            <div> many reservations <i class="fa-solid fa-book"></i> </div>
                         </div>
 
                         <div class="time mt-3">
-                            <h4>المواعيد</h4>
+                            <h4>available time</h4>
                            <span>{{clinc.Days}} - {{clinc.Days2}}</span>
                         </div>
 
                         <div class="book p-5">
 
-                            <a href="{% url 'reserve' clinc.id %}" class="btn">احجز الان</a>
+                            <a href="{% url 'reserve' clinc.id %}" class="btn">book now</a>
 
                         </div>
 

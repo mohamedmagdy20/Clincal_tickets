@@ -116,7 +116,6 @@ def Ticket(request, id):
 
 def more_serv(request):
     clincs = Department.objects.all()
-
     return render(request, 'MoreServ/moreServ.html', {'clincs': clincs})
 
 

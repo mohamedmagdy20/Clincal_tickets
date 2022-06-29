@@ -8,8 +8,8 @@
 {% endfor %}
 {% endif %}
 <section class="table mt-2 " id="dep-table">
-  <div class="w-75 m-auto position">
-    <div style="overflow-x:auto;">
+  <div class="container m-auto ">
+    <div  style="overflow-x:auto;" class="w-100 position">
 
     <!-- <div class="ms-5"> -->
     <div class="row">
@@ -31,7 +31,8 @@
         </form>
       </div>
     </div>
-    <table class="styled-table text-center overflow">
+  
+    <table class="styled-table text-center">
       <thead>
         <tr class="text-center">
           <th>Name</th>
@@ -45,7 +46,6 @@
         </tr>
       </thead>
       <tbody>
-
         {% for dep in deps %}
         <tr>
           <td>{{dep.name}}</td>
@@ -68,6 +68,7 @@
       </tbody>
     </table>
   </div>
+
   </div>
 </section>
 

@@ -1,3 +1,4 @@
+from datetime import datetime
 import os
 from django.shortcuts import redirect, render
 from django.contrib import messages
@@ -9,11 +10,19 @@ from Project.forms import PatientForm
 
 
 def Dashboard(request):
+    firstfeed =feedback.objects.first()
+    lastfeed =feedback.objects.last()
+    
+    list_of_price =[]
+    price = ticket.objects.all() 
+    for i in price:
+        list_of_price.append(i.dept.price)
+    res =  sum(list_of_price)
     Departmentcount = Department.objects.count()
     patientscount = Patient.objects.count()
     doctorscount = Doctor.objects.count()
     ticketcount = ticket.objects.count()
-    return render(request, 'Dashbord.html', {'deps': Departmentcount, 'pat': patientscount, 'doc': doctorscount, 'ticket': ticketcount})
+    return render(request, 'Dashbord.html', {'lastfed':lastfeed,'fed':firstfeed,'total':res,'deps': Departmentcount, 'pat': patientscount, 'doc': doctorscount, 'ticket': ticketcount})
 
 
 def Feedback(request):
@@ -44,7 +53,7 @@ def doctor(request):
     return render(request, 'doctors.html', context)
 
 def patients(request):
-    patients = Patient.objects.all()
+    patients = Patient.objects.all()  
     form = patientform(request.POST or None, request.FILES or None)
     if form.is_valid():
         form.save()
@@ -110,6 +119,7 @@ def deletepatient(request, p_id):
     item = Patient.objects.get(id=p_id)
     item.delete()
     messages.success(request, "A Patient Has Been Deleted Succesfully ")
+
     return redirect('Dashboard/patient')
 
 
@@ -120,7 +130,9 @@ def searchpatient(request):
         messages.success(request, "Succesfully added")
     if request.method == 'POST':
         key = request.POST.get('search')
+        
         res = Patient.objects.filter(Name__icontains=key)
+
         return render(request, "searchpatient.html", {"patients": res,'form':form})
     else:
         return render(request, "searchpatient.html", {})
@@ -192,3 +204,15 @@ def updatedoctor(request,id):
 def viewticket(request,id):
     data = ticket.objects.get(pk=id)
     return render(request,'view_ticket.html',{'ticket':data})
+
+from django.db.models import Sum
+
+
+def sumticket(request):
+    
+    list_of_price =[]
+    price = ticket.objects.all() 
+    for i in price:
+        list_of_price.append(i.dept.price)
+    res =  sum(list_of_price)
+    return render(request,'base.html',{'total':res})

@@ -63,7 +63,7 @@ class Patient(models.Model):
 
 
 class ticket(models.Model):
-    dept = models.ForeignKey(Department, on_delete=models.CASCADE)
+    dept = models.ForeignKey(Department,on_delete=models.CASCADE,related_name='dept')
     Pat = models.ForeignKey(Patient, on_delete=models.CASCADE)
     startdate = models.DateField(null=True)
     enddate = models.DateField(null=True)

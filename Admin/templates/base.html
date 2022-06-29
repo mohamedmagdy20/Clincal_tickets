@@ -51,11 +51,72 @@
       </i></span>
   </div>
   <div class="main-head d-flex justify-content-end shadow-sm p-3 mb-5 bg-light rounded w-100 ">
-    <div class=" head-content"><a href=""><i class="fa fa-user text-primary"></a></i></div>
-    <div class="head-content "><a href=""><i class="fa fa-dollar-sign text-success"></i></a></div>
-    <div class="head-content"><a href="" data-toggle="modal" data-target="#alertModal"><i
-          class="fa fa-bell text-black"></i></a></div>
+    <div class=" head-content"><a href=""  data-toggle="modal" data-target="#user"><i class="fa fa-user text-primary"></a></i></div>
+    <div class="head-content "><a href=""  data-toggle="modal" data-target="#money"><i class="fa fa-dollar-sign text-success"></i></a></div>
+    <div class="head-content "><a   data-toggle="modal" data-target="#alertModal"><i
+      class="fa fa-bell text-black"></i></a></div>
+    
   </div>
+  <div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Message From Admin</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body fs-3 text-dark">
+        Welcome To Our Dashboard &#128512;
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btnsuccess text-white" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="money" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Total Pounds From Tickets</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span>&times;</span>
+      </button>
+    </div>
+    <div class="modal-body fs-3 text-dark">
+      {{total}} LE
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btnsuccess text-white" data-dismiss="modal">Close</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="modal fade" id="user" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">User information</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span>&times;</span>
+      </button>
+    </div>
+    <div class="modal-body fs-3 text-dark">
+      <div class="text-center">{{request.user.username}}</div>
+      <div class="text-center"> {{request.user.email}}</div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btnsuccess text-white" data-dismiss="modal">Close</button>
+    </div>
+  </div>
+</div>
+</div>
   {% block content %} {% endblock%}
   <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
   <script src="{% static 'js/file.js' %}"></script>
